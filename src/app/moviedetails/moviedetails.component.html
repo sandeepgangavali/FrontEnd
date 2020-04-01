@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <input type="text" placeholder="Search Popular Movies" name="search" [(ngModel)]="searchText">
+  <button (click)="searchMovie(searchText)" class="btn btn-success">Search</button><br><br>
+  <!--Card Component-->
+  <div class="row">
+   <div class="card mb-3" style="max-width: 540px;" *ngFor="let moviesInfo of moviesFinal | paginate: { itemsPerPage: 6, currentPage: p }; let i = index" (click)="getItems(moviesInfo)">
+    <div class="row no-gutters">
+      <div class="col-md-3 mx-auto my-5">
+        <img src="{{moviesInfo.poster_path}}" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{moviesInfo.title}}</h5>
+          <p class="overview">{{moviesInfo.overview}}</p>
+          <p class="vote_average">{{moviesInfo.vote_average}}</p>
+          <button (click)="save()" class="btn btn-primary"><i class="fa fa-heart" aria-hidden="true"></i>Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>
+ 

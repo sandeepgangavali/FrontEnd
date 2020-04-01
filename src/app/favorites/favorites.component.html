@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="card mb-3" style="max-width: 540px;" *ngFor="let favoriteInfo of favorite | paginate: { itemsPerPage: 4, currentPage: p }; let i = index" (click)="getComments(favoriteInfo)">
+     <div class="row no-gutters">
+       <div class="col-md-3 mx-auto my-5">
+         <img src="{{favoriteInfo.poster_path}}" class="card-img" alt="...">
+       </div>
+       <div class="col-md-8">
+         <div class="card-body">
+           <h5 class="card-title">{{favoriteInfo.title}}</h5>
+           <p class="overview">{{favoriteInfo.overview}}</p>
+           <p class="vote_average">{{favoriteInfo.vote_average}}</p>
+           <label>Comments :</label><input type="text" #InputText placeholder="Comments" value={{favoriteInfo.comments}}/>
+           <button (click)="upDate(InputText.value)" class="btn btn-success">Update</button><br><br>
+           <button (click)="deleateMovie(favoriteInfo)" class="btn btn-primary">Deleate</button>
+         </div>
+       </div>
+     </div>
+   </div>
+   <pagination-controls (pageChange)="p = $event"></pagination-controls>
+ </div>
